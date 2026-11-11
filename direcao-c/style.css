@@ -2,7 +2,7 @@
    Base editorial da A (respiro, foto inteira, wordmark que encolhe) +
    momentos pontuais da B: The Edit, Rental, pop-up de early drop e City Notes.
    Regra: no máximo 1 "momento B" visível por tela. */
-@import url('../direcao-a/style.css');
+@import url('../direcao-a/style.css?v=20261111140933');
 
 /* faixa de padrão fina (assinatura) */
 .strip{height:14px;background:url('../assets/pattern-dots-olive-lilac.jpg') center top/720px auto repeat}

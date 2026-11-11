@@ -1,7 +1,7 @@
 /* DIREÇÃO A — Arquivo editorial silencioso
    Ritmo lento, muito respiro, foto inteira, tipografia como imagem.
    Só consome design/tokens.css. */
-@import url('../tokens.css');
+@import url('../tokens.css?v=20261111140933');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}

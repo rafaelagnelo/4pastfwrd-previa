@@ -196,7 +196,7 @@ footer .wrap{padding-block:24px;font-size:13px;display:flex;flex-wrap:wrap;gap:8
     viewer.hidden = false; document.body.style.overflow = 'hidden';
     try {
       if (!cache[path]) {
-        const res = await fetch(path);
+        const res = await fetch(path + '?v=20261111140933', { cache: 'no-store' });
         if (!res.ok) throw new Error(res.status);
         cache[path] = await res.text();
       }
