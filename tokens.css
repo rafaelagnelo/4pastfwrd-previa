@@ -82,7 +82,7 @@
   --font-data:      'DM Sans', system-ui, sans-serif;     /* preço, medidas: sempre sans */
   --font-accent:    'Newsreader', Georgia, serif;         /* itálico para tagline/acentos (substitui o script antigo) */
 
-  --fs-giant:  calc((100vw - 2 * var(--grid-margin)) / 5.1); /* "FORWARD" ocupa a largura útil, em 2 linhas */
+  --fs-giant:  clamp(36px, 6vw, 88px); /* letreiro do rodapé, discreto (pedido do Rafael 2026-11-11) */
   --fs-h1:     clamp(40px, 7vw, 104px);
   --fs-h2:     clamp(28px, 4.2vw, 60px);
   --fs-h3:     clamp(20px, 2.4vw, 28px);
