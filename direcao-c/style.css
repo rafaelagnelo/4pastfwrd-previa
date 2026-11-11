@@ -1,0 +1,162 @@
+/* DIREÇÃO C — Híbrida
+   Base editorial da A (respiro, foto inteira, wordmark que encolhe) +
+   momentos pontuais da B: The Edit, Rental, pop-up de early drop e City Notes.
+   Regra: no máximo 1 "momento B" visível por tela. */
+@import url('../direcao-a/style.css');
+
+/* faixa de padrão fina (assinatura) */
+.strip{height:14px;background:url('../assets/pattern-dots-olive-lilac.jpg') center top/720px auto repeat}
+.strip.night{background-image:url('../assets/pattern-dots-oxblood-indigo.jpg')}
+
+/* MOMENTO B 1 — The Edit: padrão + cartão creme */
+.moment-edit{background:url('../assets/pattern-dots-oxblood-indigo.jpg') center top/720px auto repeat;padding:var(--s-9) var(--grid-margin);display:flex;justify-content:center}
+.moment-edit .card{background:var(--c-card);color:var(--c-oxblood);text-align:center;padding:var(--s-7) var(--s-6);max-width:520px;box-shadow:var(--shadow-overlay)}
+.moment-edit h2{font-size:var(--fs-h2);margin:var(--s-3) 0}
+.moment-edit p{font-family:var(--font-editorial);color:var(--c-ink);margin-bottom:var(--s-5)}
+.moment-edit .label{color:var(--c-oxblood)}
+
+/* MOMENTO B 2 — Rental em "noite bordô" */
+.moment-rent{padding:var(--section-y) var(--grid-margin)}
+.moment-rent .grid2{display:grid;gap:var(--s-6)}
+.moment-rent .ph{aspect-ratio:var(--ratio-street)}
+.moment-rent h2{font-size:var(--fs-h1);color:var(--text)}
+.moment-rent .acc{font-family:var(--font-accent);font-style:italic;font-size:var(--fs-accent);color:var(--text-accent);margin:var(--s-3) 0 var(--s-5)}
+.moment-rent .btn{display:inline-block;width:auto;padding:var(--s-4) var(--s-6);background:var(--c-lilac);color:var(--c-ink);border-color:var(--c-lilac)}
+.moment-rent .btn:hover{background:var(--c-cream)}
+
+/* MOMENTO B 3 — City Notes: colagem leve */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-3);align-items:start}
+.notes .ph:nth-child(1){aspect-ratio:4/5;transform:rotate(-2deg)}
+.notes .ph:nth-child(2){aspect-ratio:1/1;margin-top:var(--s-7);transform:rotate(2deg)}
+.notes .ph:nth-child(3){aspect-ratio:4/5;transform:rotate(-1deg)}
+.notes .ph{border:6px solid var(--c-white);box-shadow:0 8px 24px rgba(28,23,20,.12)}
+
+/* MOMENTO B 4 — pop-up early drop */
+.popup{margin:0 var(--grid-margin) var(--section-y);border:10px solid transparent;border-image:url('../assets/pattern-dots-olive-lilac.jpg') 30 round;background:var(--c-cream);padding:var(--s-7) var(--s-5);text-align:center}
+.popup h2{font-size:var(--fs-h2);color:var(--c-oxblood)}
+.popup p{font-family:var(--font-editorial);margin:var(--s-3) auto var(--s-5);max-width:40ch}
+.popup .row{display:flex;gap:var(--s-2);max-width:420px;margin:0 auto}
+.popup input{flex:1;min-width:0;font:inherit;font-family:var(--font-data);padding:var(--s-3);border:1px solid var(--border-input);background:var(--c-white)}
+.popup .btn{width:auto;padding:var(--s-3) var(--s-5);background:var(--bg-accent);border-color:var(--bg-accent)}
+.popup small{display:block;margin-top:var(--s-3);font-family:var(--font-data);font-size:var(--fs-micro);color:var(--text-muted)}
+
+/* venda conosco em lilás (tom "dia") */
+.sell-soft{background:var(--c-lilac);padding:var(--section-y) var(--grid-margin)}
+.sell-soft h2{font-size:var(--fs-h2)}
+.sell-soft p{font-family:var(--font-editorial);font-size:var(--fs-lead);max-width:40ch;margin:var(--s-3) 0 var(--s-5)}
+
+/* selo-carimbo no produto */
+.stamp{display:flex;align-items:center;gap:10px;margin-top:var(--s-4);max-width:100%}
+.stamp span{flex:1;min-width:0}
+.stamp img{flex:0 0 44px}
+.stamp img{width:44px;height:44px;border-radius:50%;animation:spin 14s linear infinite}
+.stamp span{font-family:var(--font-accent);font-style:italic;color:var(--text-accent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.stamp img{animation:none}}
+
+@media (min-width:900px){
+  .moment-rent .grid2{grid-template-columns:5fr 7fr;align-items:end;gap:var(--s-8)}
+  .sell-soft{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-8);align-items:end}
+}
+
+/* =====================================================================
+   v2 — DINÂMICA + BLOCOS REORGANIZÁVEIS (pedido de 2026-11-09)
+   ===================================================================== */
+
+/* transição suave entre páginas (navegadores compatíveis) */
+@view-transition{navigation:auto}
+
+/* --- revelar ao rolar --- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* --- card: 2ª foto (peça usada) no hover / indicador no toque --- */
+.prod{position:relative}
+.prod .ph{position:relative;overflow:hidden}
+.prod .ph-b{position:absolute;inset:0;display:flex;align-items:flex-end;padding:var(--s-3);background:var(--c-stone-200);opacity:0;transition:opacity var(--dur-base) var(--ease)}
+.prod:hover .ph-b,.prod:focus-visible .ph-b{opacity:1}
+.prod .fav{position:absolute;top:var(--s-2);right:var(--s-2);z-index:2;width:32px;height:32px;border-radius:50%;background:var(--c-cream);border:0;cursor:pointer;font-size:14px;transition:transform var(--dur-fast) var(--ease)}
+.prod .fav[aria-pressed="true"]{background:var(--c-oxblood);color:var(--c-cream)}
+.prod .fav:active{transform:scale(.88)}
+.prod .dots{position:absolute;bottom:var(--s-2);right:var(--s-2);display:flex;gap:3px;z-index:2}
+.prod .dots i{width:5px;height:5px;border-radius:50%;background:var(--c-ink);opacity:.35}
+.prod .dots i:first-child{opacity:1}
+@media (hover:hover){.prod .dots{display:none}}
+.prod:hover .meta span:nth-child(2){text-decoration:underline}
+
+/* --- menu em tela cheia --- */
+.menu-btn{background:none;border:0;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:0;color:inherit}
+.overlay{position:fixed;inset:0;z-index:80;background:var(--bg);display:flex;flex-direction:column;padding:var(--s-4) var(--grid-margin) var(--s-6);transform:translateY(-100%);visibility:hidden;transition:transform var(--dur-slow) var(--ease),visibility 0s linear var(--dur-slow);overflow-y:auto}
+.overlay.open{transform:none;visibility:visible;transition:transform var(--dur-slow) var(--ease)}
+.overlay-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-data);font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase}
+.overlay-groups{display:grid;gap:var(--s-6);margin-top:var(--s-7)}
+.overlay-groups .label{display:block;margin-bottom:var(--s-2)}
+.overlay-groups a{display:block;font-family:var(--font-display);text-transform:uppercase;font-size:clamp(30px,6vw,56px);line-height:1.05;opacity:0;transform:translateY(16px);transition:opacity var(--dur-base) var(--ease),transform var(--dur-base) var(--ease),color var(--dur-fast)}
+.overlay.open .overlay-groups a{opacity:1;transform:none}
+.overlay-groups a:hover{color:var(--text-accent)}
+.overlay-foot{margin-top:auto;padding-top:var(--s-7);display:flex;flex-wrap:wrap;gap:var(--s-5);font-family:var(--font-data);font-size:var(--fs-small)}
+@media (min-width:900px){.overlay-groups{grid-template-columns:repeat(4,1fr)}.overlay-groups a{font-size:clamp(28px,3vw,44px)}}
+
+/* --- produto: tirinha interativa + barra fixa de compra no celular --- */
+.cond-scale span{cursor:pointer;transition:transform var(--dur-fast) var(--ease)}
+.cond-scale span:hover{transform:scaleY(1.8)}
+.cond-def{min-height:1.5em;font-family:var(--font-data);font-size:var(--fs-micro);color:var(--text-muted);margin-top:var(--s-2)}
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bg);border-top:1px solid var(--border);padding:var(--s-3) var(--grid-margin);display:flex;align-items:center;gap:var(--s-3);transform:translateY(110%);transition:transform var(--dur-base) var(--ease)}
+.buybar.show{transform:none}
+.buybar .bb-info{flex:1;min-width:0;font-family:var(--font-data);font-size:var(--fs-small);line-height:1.3}
+.buybar .bb-info b{display:block;font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase}
+.buybar .btn{width:auto;padding:var(--s-3) var(--s-5)}
+@media (min-width:900px){.buybar{display:none}}
+body:has(.buybar.show) .wa{bottom:84px}
+.wa{transition:bottom var(--dur-base) var(--ease)}
+/* New In em grade: 4 colunas no desktop, ritmo desencontrado nas pares */
+@media (min-width:900px){
+  [data-variant="grade"] .products{grid-template-columns:repeat(4,1fr)}
+  [data-variant="grade"] .products > .prod:nth-child(3n+2){margin-top:0}
+  [data-variant="grade"] .products > .prod:nth-child(even){margin-top:var(--s-8)}
+}
+details > *:not(summary){animation:open var(--dur-base) var(--ease)}
+@keyframes open{from{opacity:0;transform:translateY(-6px)}}
+
+/* --- BLOCOS: variações de layout (equivalem a "settings" de seção no Shopify) --- */
+/* New In */
+[data-variant="carrossel"] .products{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:70%;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--grid-gutter)}
+[data-variant="carrossel"] .products > *{scroll-snap-align:start;margin-top:0!important}
+[data-variant="destaque"] .products{grid-template-columns:1fr 1fr}
+[data-variant="destaque"] .products > :first-child{grid-column:1/-1}
+[data-variant="destaque"] .products > :first-child .ph{aspect-ratio:var(--ratio-street)}
+@media (min-width:900px){
+  [data-variant="carrossel"] .products{grid-auto-columns:28%}
+  [data-variant="destaque"] .products{grid-template-columns:2fr 1fr;grid-template-rows:auto auto}
+  [data-variant="destaque"] .products > :first-child{grid-column:1;grid-row:1/3}
+  [data-variant="destaque"] .products > *{margin-top:0!important}
+}
+/* The Edit */
+[data-variant="dividido"].moment-edit{background:none;padding:var(--section-y) var(--grid-margin);display:grid;gap:var(--s-5)}
+[data-variant="dividido"].moment-edit::before{content:"";display:block;aspect-ratio:4/5;background:url('../assets/pattern-dots-oxblood-indigo.jpg') center/720px auto}
+[data-variant="dividido"].moment-edit .card{max-width:none;box-shadow:none;text-align:left;align-self:end}
+[data-variant="faixa"].moment-edit{padding:var(--s-6) var(--grid-margin)}
+[data-variant="faixa"].moment-edit .card{max-width:none;width:100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-4);padding:var(--s-5);text-align:left}
+[data-variant="faixa"].moment-edit .card p{margin:0}
+@media (min-width:900px){[data-variant="dividido"].moment-edit{grid-template-columns:1fr 1fr;align-items:end}}
+/* Rental */
+[data-variant="banner"] .moment-rent .grid2{grid-template-columns:1fr!important;position:relative}
+[data-variant="banner"] .moment-rent .ph{aspect-ratio:16/9}
+[data-variant="banner"] .moment-rent .grid2 > div:last-child{position:absolute;left:var(--s-5);bottom:var(--s-5);right:var(--s-5)}
+@media (max-width:899px){[data-variant="banner"] .moment-rent .ph{aspect-ratio:3/4}}
+/* City Notes */
+[data-variant="grade"] .notes .ph{transform:none!important;margin-top:0!important;border:0;box-shadow:none;aspect-ratio:4/5!important}
+
+/* --- painel de demonstração (simula o editor de temas do Shopify) --- */
+.editor-toggle{position:fixed;left:16px;bottom:16px;z-index:70;background:var(--c-indigo);color:var(--c-cream);border:0;font-family:var(--font-data);font-size:var(--fs-micro);font-weight:700;letter-spacing:var(--ls-caps);text-transform:uppercase;padding:10px 14px;cursor:pointer}
+.editor{position:fixed;left:16px;bottom:60px;z-index:70;width:min(360px,calc(100vw - 32px));max-height:70vh;overflow-y:auto;background:var(--c-white);border:1px solid var(--border-strong);box-shadow:var(--shadow-overlay);padding:var(--s-4);font-family:var(--font-data);font-size:var(--fs-small);display:none}
+.editor.open{display:block}
+.editor h3{font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase;margin-bottom:var(--s-2)}
+.editor p.hint{color:var(--text-muted);font-size:var(--fs-micro);margin-bottom:var(--s-3)}
+.editor ul{padding:0}
+.editor li{list-style:none;display:grid;grid-template-columns:1fr auto auto auto auto;gap:6px;align-items:center;padding:6px 0;border-top:1px solid var(--border)}
+.editor select{font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--border-input);background:var(--c-white);max-width:104px}
+.editor button.mv{border:1px solid var(--border-input);background:var(--c-cream);width:26px;height:26px;cursor:pointer}
+.editor input[type=checkbox]{width:16px;height:16px}
+[data-hidden="1"]{display:none!important}

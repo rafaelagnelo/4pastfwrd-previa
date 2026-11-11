@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Manual v2 · 4PASTFWRD</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Esta página só consome tokens. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:var(--fs-body);line-height:var(--lh-body)}
+.wrap{max-width:var(--grid-max);margin:0 auto;padding:0 var(--grid-margin)}
+section{padding:var(--section-y) 0;border-bottom:var(--border-w) solid var(--border)}
+.label{font-family:var(--font-data);font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--s-4)}
+.warn{background:var(--bg-surface);font-family:var(--font-data);font-size:var(--fs-small);padding:var(--s-3) var(--grid-margin)}
+h1,h2,.display{font-family:var(--font-display);font-weight:400;text-transform:var(--display-case);letter-spacing:var(--ls-display);line-height:var(--lh-head)}
+h1{font-size:var(--fs-h1);line-height:var(--lh-tight)}
+h2{font-size:var(--fs-h2);margin-bottom:var(--s-5)}
+.accent{font-family:var(--font-accent);font-style:italic;font-size:var(--fs-accent);color:var(--text-accent)}
+.lead{font-size:var(--fs-lead);max-width:56ch}
+.editorial{font-family:var(--font-editorial);font-size:var(--fs-lead);max-width:56ch}
+.editorial.b{font-family:'Newsreader',Georgia,serif}
+/* hero com padrão */
+.hero{background:var(--pattern-dots-olive) center/cover;position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:rgba(28,23,20,.22)}
+.hero h1{position:relative;color:var(--c-cream)}
+.hero.night{background-image:var(--pattern-dots-oxblood)}
+.hero .card-note{position:relative;background:var(--c-card);color:var(--c-oxblood);padding:var(--s-7) var(--s-8);font-family:var(--font-display);font-size:var(--fs-h2);text-transform:uppercase;line-height:1}
+.duo{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:900px){.duo{grid-template-columns:1fr 1fr}}
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-4)}
+@media(min-width:900px){.swatches{grid-template-columns:repeat(5,1fr)}}
+.sw{border:var(--border-w) solid var(--border)}
+.sw .chip{height:96px}
+.sw p{font-family:var(--font-data);font-size:var(--fs-small);padding:var(--s-2) var(--s-3)}
+.sw small{display:block;color:var(--text-muted);font-size:var(--fs-micro)}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-5)}
+.pair{display:flex;height:72px}.pair div{flex:1}
+.row{display:flex;flex-wrap:wrap;gap:var(--s-4);align-items:center}
+.btn{font-family:var(--font-data);font-weight:var(--fw-bold);font-size:var(--fs-small);text-transform:uppercase;letter-spacing:.06em;padding:var(--s-4) var(--s-6);border-radius:var(--radius-0);border:var(--border-w) solid transparent;cursor:pointer;transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
+.btn:focus-visible,.link:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.btn-primary{background:var(--bg-inverse);color:var(--text-inverse)}
+.btn-primary:hover{background:var(--bg-accent)}
+.btn-accent{background:var(--bg-accent);color:var(--text-on-accent)}
+.btn-accent:hover{background:var(--c-oxblood-deep)}
+.btn-secondary{background:transparent;color:var(--text);border-color:var(--border-strong)}
+.btn-secondary:hover{background:var(--bg-inverse);color:var(--text-inverse)}
+.link{color:var(--text);text-decoration:underline;font-family:var(--font-data)}
+.link:hover{color:var(--text-accent)}
+.badge{font-family:var(--font-data);font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase;font-weight:var(--fw-bold);padding:var(--s-1) var(--s-2);border:var(--border-w) solid transparent}
+.b-new{background:var(--badge-new-bg);color:var(--badge-new-fg)}
+.b-rent{background:var(--badge-rent-bg);color:var(--badge-rent-fg)}
+.b-sale{background:var(--badge-sale-bg);color:var(--badge-sale-fg);border-color:var(--badge-sale-bd)}
+.b-sold{background:var(--badge-sold-bg);color:var(--badge-sold-fg)}
+.loading{width:56px;height:56px;border-radius:50%;background:url('assets/logo-4p-bordado-provisorio.png') center/cover;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.loading{animation:none}}
+.cond{max-width:420px}
+.cond-head{display:flex;justify-content:space-between;font-family:var(--font-data);font-size:var(--fs-small)}
+.cond-scale{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--cond-seg-gap);margin:var(--s-2) 0 var(--s-1)}
+.cond-scale span{height:var(--cond-seg-h);background:var(--cond-off)}
+.cond-scale span.on{background:var(--cond-on)}
+.cond-labels{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--cond-seg-gap);font-family:var(--font-data);font-size:10px;color:var(--cond-label);text-align:center}
+.cond-labels .on{color:var(--cond-label-on);font-weight:var(--fw-bold)}
+.cond ul{font-family:var(--font-data);font-size:var(--fs-small);padding-left:var(--s-5);margin-top:var(--s-3)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gutter)}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card .img{aspect-ratio:var(--ratio-product);background:var(--img-bg);position:relative}
+.card .badge{position:absolute;top:var(--s-2);left:var(--s-2)}
+.card .fav{position:absolute;top:var(--s-2);right:var(--s-2);font-size:var(--fs-small)}
+.card .brand{font-family:var(--font-data);font-size:var(--fs-micro);font-weight:var(--fw-bold);letter-spacing:var(--ls-caps);text-transform:uppercase;margin-top:var(--s-2)}
+.card p{font-family:var(--font-data);font-size:var(--fs-small)}
+.card .muted{color:var(--text-muted);font-size:var(--fs-micro)}
+.field label{display:block;font-family:var(--font-data);font-size:var(--fs-micro);color:var(--text-muted);margin-bottom:var(--s-1)}
+.field input{width:100%;max-width:360px;font:inherit;font-family:var(--font-data);padding:var(--s-3);border:var(--border-w) solid var(--border-input);border-radius:var(--radius-0);background:var(--c-white)}
+.field input:focus{outline:2px solid var(--focus);outline-offset:1px}
+.night-box{background:var(--bg);color:var(--text);padding:var(--s-7) var(--grid-margin);margin-top:var(--s-5)}
+.logos{display:flex;flex-wrap:wrap;gap:var(--s-5);align-items:center}
+.mono{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:44px}
+.wordmark{font-family:var(--font-display);text-transform:uppercase;font-size:40px;line-height:.95;text-align:center}
+footer{background:var(--c-oxblood);color:var(--c-cream);overflow:hidden;padding-top:var(--s-7)}
+.giant{font-family:var(--font-display);text-transform:uppercase;font-size:var(--fs-giant);line-height:.85;white-space:nowrap}
+.photo{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gutter)}
+@media(min-width:900px){.photo{grid-template-columns:repeat(4,1fr)}}
+.photo div{background:var(--img-bg);display:flex;align-items:flex-end;padding:var(--s-2);font-family:var(--font-data);font-size:var(--fs-micro);color:var(--text-muted)}
+</style>
+</head>
+<body>
+<div class="warn">MANUAL v2 — REBRANDING (via prints do Instagram). Fonte serifada e hex ainda a confirmar. Detalhes: docs/03-manual-marca.md</div>
+
+<div class="duo">
+  <div class="hero"><h1>4 Past<br>Forward</h1></div>
+  <div class="hero night"><div class="card-note">Coming<br>soon</div></div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <div class="label">Tom</div>
+  <h2>Boas peças vivem mais de uma vida.</h2>
+  <p class="accent">Second time's a charm.</p>
+</section>
+
+<section>
+  <div class="label">1 · Paleta (extraída dos posts)</div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:var(--c-cream)"></div><p>Creme <small>#F2ECE2 · fundo</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-card)"></div><p>Cartão <small>#E0D6C9 · superfícies</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-ink)"></div><p>Preto quente <small>#1C1714 · texto</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-oxblood)"></div><p>Bordô <small>#6E1A17 · destaque</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-olive)"></div><p>Oliva <small>#6B621C · monograma</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-lilac)"></div><p>Lilás <small>#CDB4D0 · só fundo</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-indigo)"></div><p>Índigo <small>#3A5174 · foco, detalhe</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-night)"></div><p>Noite bordô <small>#2A0E0C · Rental</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-stone-600)"></div><p>Pedra 600 <small>#6B6359 · texto secundário</small></p></div>
+    <div class="sw"><div class="chip" style="background:var(--c-stone-200)"></div><p>Pedra 200 <small>#DCD3C6 · linhas</small></p></div>
+  </div>
+  <div class="pairs">
+    <div><p class="label">Par "dia"</p><div class="pair"><div style="background:var(--c-olive)"></div><div style="background:var(--c-lilac)"></div></div></div>
+    <div><p class="label">Par "noite"</p><div class="pair"><div style="background:var(--c-oxblood)"></div><div style="background:var(--c-indigo)"></div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="label">2 · Tipografia</div>
+  <h1>Acabou de chegar.</h1>
+  <p class="label" style="margin-top:var(--s-3)">Display: Gloock (substituta provisória da serifada dos posts)</p>
+  <p class="lead">Lead em DM Sans: Acervo de moda de luxo, peça por peça. Para comprar, alugar ou passar adiante.</p>
+  <p style="margin-top:var(--s-6)" class="label">Opção A (recomendada) — corpo em DM Sans</p>
+  <p class="editorial">Blazer de lã fria da coleção de inverno de 1998, com ombro estruturado e corte que ainda parece de agora. Funciona com jeans e tênis tanto quanto com a calça do mesmo tecido.</p>
+  <p style="margin-top:var(--s-6)" class="label">Opção B — texto editorial em Newsreader</p>
+  <p class="editorial b">Blazer de lã fria da coleção de inverno de 1998, com ombro estruturado e corte que ainda parece de agora. Funciona com jeans e tênis tanto quanto com a calça do mesmo tecido.</p>
+  <p style="margin-top:var(--s-6)" class="label">Acento — Newsreader itálico (substitui o script)</p>
+  <p class="accent">We've been cooking…</p>
+</section>
+
+<section>
+  <div class="label">5.1 · Botões (Tab para ver o foco)</div>
+  <div class="row">
+    <button class="btn btn-primary">Adicionar à sacola</button>
+    <button class="btn btn-accent">Quero entrar na lista</button>
+    <button class="btn btn-secondary">Ver tudo</button>
+    <a href="#" class="link">Pergunte sobre esta peça</a>
+  </div>
+</section>
+
+<section>
+  <div class="label">5.2 · Selos</div>
+  <div class="row">
+    <span class="badge b-new">New in</span>
+    <span class="badge b-rent">4 Rent</span>
+    <span class="badge b-sale">Sale</span>
+    <span class="badge b-sold">Vendida</span>
+    <span class="loading" role="img" aria-label="Carregando"></span>
+  </div>
+</section>
+
+<section>
+  <div class="label">5.3 · Escala de condição</div>
+  <div class="cond" role="group" aria-label="Condição: Excelente, 2 de 6">
+    <div class="cond-head"><strong>Condição: Excelente</strong><a href="#" class="link">Como avaliamos</a></div>
+    <div class="cond-scale" aria-hidden="true"><span></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    <div class="cond-labels" aria-hidden="true"><span>Impecável</span><span class="on">Excelente</span><span>Muito bom</span><span>Bom</span><span>Com marcas</span><span>Como está</span></div>
+    <ul><li>Leve desbotamento na barra (foto 4).</li><li>Etiqueta de tamanho removida.</li></ul>
+  </div>
+</section>
+
+<section>
+  <div class="label">5.4 · Cards de produto</div>
+  <div class="grid">
+    <div class="card"><div class="img"><span class="badge b-new">New in</span><span class="fav">♡</span></div><div class="brand">Designer</div><p>Blazer de lã fria</p><p>R$ 1.890</p><p class="muted">Excelente</p></div>
+    <div class="card"><div class="img"><span class="badge b-rent">4 Rent</span><span class="fav">♡</span></div><div class="brand">Designer</div><p>Vestido longo</p><p>a partir de R$ 450/3 dias</p><p class="muted">Muito bom</p></div>
+    <div class="card"><div class="img"><span class="badge b-sale">Sale</span><span class="fav">♡</span></div><div class="brand">Designer</div><p>Calça de alfaiataria</p><p><s>R$ 900</s> R$ 690</p><p class="muted">Bom</p></div>
+    <div class="card"><div class="img" style="opacity:.6"><span class="badge b-sold">Vendida</span></div><div class="brand">Designer</div><p>Óculos de acetato</p><p class="muted">Sold Archive</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="label">5.5 · Campos + tema "noite bordô" (Rental)</div>
+  <div class="field"><label for="em">E-mail</label><input id="em" type="email" placeholder="voce@email.com"></div>
+  <div class="night-box theme-night">
+    <h2>Para uma noite.</h2>
+    <p class="accent">Ou um fim de semana.</p>
+    <div class="cond" role="group" aria-label="Condição: Muito bom, 3 de 6" style="margin-top:var(--s-5)">
+      <div class="cond-scale" aria-hidden="true"><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="cond-labels" aria-hidden="true"><span>Impecável</span><span>Excelente</span><span class="on">Muito bom</span><span>Bom</span><span>Com marcas</span><span>Como está</span></div>
+    </div>
+    <p style="color:var(--text-muted);margin-top:var(--s-4)">Texto secundário no escuro.</p>
+  </div>
+</section>
+
+<section>
+  <div class="label">6 · Fotografia (proporções)</div>
+  <div class="photo">
+    <div style="aspect-ratio:var(--ratio-product)">Flat 3:4 · fundo creme</div>
+    <div style="aspect-ratio:var(--ratio-detail)">Defeito 1:1</div>
+    <div style="aspect-ratio:var(--ratio-street)">Rua 4:5</div>
+    <div style="aspect-ratio:var(--ratio-hero-m)">Hero mobile 9:16</div>
+  </div>
+</section>
+
+<section>
+  <div class="label">7 · Monograma e wordmark (versões planas são placeholder até o SVG chegar)</div>
+  <div class="logos">
+    <img src="assets/logo-4p-bordado-provisorio.png" alt="Monograma 4P bordado" width="120" height="120">
+    <div class="mono" style="background:var(--c-cream);color:var(--c-olive);border:1px solid var(--border)">4P</div>
+    <div class="mono" style="background:var(--c-oxblood);color:var(--c-cream)">4P</div>
+    <div class="mono" style="background:var(--c-olive);color:var(--c-cream)">4P</div>
+    <div class="wordmark" style="color:var(--c-oxblood)">4 Past<br>Forward</div>
+  </div>
+</section>
+
+</div>
+<footer><div class="giant" aria-hidden="true" style="padding:0 var(--grid-margin)">4 Past<br>Forward</div></footer>
+</body>
+</html>

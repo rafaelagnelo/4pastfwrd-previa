@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Direção C · Venda conosco · 4PASTFWRD</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../componentes/whatsapp.css">
+<script src="../componentes/whatsapp.js" defer></script>
+<link rel="stylesheet" href="venda.css">
+<script src="interacoes.js" defer></script>
+<script src="venda.js" defer></script>
+</head>
+<body data-wa-msg="Oi! Quero vender peças com a 4PASTFWRD.">
+<div class="review"><b>Direção C — Venda conosco (fluxo de envio de peças)</b><a href="../direcoes.html">← todas as direções</a><a href="index.html">Home</a><a href="produto.html">Produto</a><a href="venda-conosco.html">Venda conosco</a></div>
+
+<div class="strip"></div>
+<header class="top shrunk">
+  <div class="top-bar">
+    <nav class="desk"><button class="menu-btn" data-open-menu aria-controls="overlay">Menu</button><a href="index.html">New In</a><a href="#">Archive</a><a href="#">Rental</a></nav>
+    <button class="menu-btn mob" data-open-menu aria-controls="overlay">Menu</button>
+    <nav><a class="hide-m" href="#">Busca</a><a class="hide-xs" href="#" aria-label="Favoritos">♡</a><a href="#vc-lista" id="vc-pack-link" aria-label="Seu pack">Pack (<span id="vc-badge">0</span>)</a></nav>
+  </div>
+  <a href="index.html" class="wordmark">4 Past Forward</a>
+</header>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="overlay-top"><span>4 Past Forward</span><button class="menu-btn" data-close-menu>Fechar ✕</button></div>
+  <div class="overlay-groups">
+    <div><span class="label">Comprar</span><a href="index.html">New In</a><a href="#">Archive</a><a href="#">Designers</a><a href="#">The Edit</a></div>
+    <div><span class="label">Alugar</span><a href="#">Rental</a><a href="#">Como funciona</a></div>
+    <div><span class="label">Vender</span><a href="venda-conosco.html">Venda conosco</a></div>
+    <div><span class="label">O acervo</span><a href="#">About</a><a href="#">Showroom</a><a href="#">Contato</a></div>
+  </div>
+  <div class="overlay-foot"><a href="#">Instagram</a><a href="#">WhatsApp</a></div>
+</div>
+
+<main id="vc">
+
+<!-- ===================== 1. APRESENTAÇÃO ===================== -->
+<section class="vc-view" id="vc-intro" data-view="intro">
+  <div class="vc-hero">
+    <div class="vc-hero-card">
+      <span class="label">Venda conosco</span>
+      <h1 class="display">Sua peça, segunda vida.</h1>
+      <p>Mande de 1 a 60 peças de uma vez, com fotos. A curadoria avalia, fotografa, precifica e vende. Você acompanha.</p>
+      <button class="btn vc-cta" data-go="form">Começar meu pack</button>
+    </div>
+  </div>
+
+  <div class="pad vc-steps-wrap">
+    <h2 class="display vc-h2">Como funciona</h2>
+    <ol class="vc-steps">
+      <li><b>Você monta o pack</b><span>Fotografe cada peça (frente, costas, etiqueta e qualquer marca de uso) e preencha marca, categoria e condição.</span></li>
+      <li><b>A curadoria responde</b><span>Em até [X] dias úteis dizemos peça por peça o que entra no acervo, com a sugestão de preço. <em class="vc-note">[CONFIRMAR prazo]</em></span></li>
+      <li><b>Vendeu, você recebe</b><span>As peças aprovadas chegam até nós por envio, retirada ou no showroom. Quando uma peça é vendida, você recebe sua parte.</span></li>
+    </ol>
+  </div>
+
+  <div class="vc-split">
+    <div>
+      <span class="label">O que entra no acervo</span>
+      <h3 class="display">Aceitamos</h3>
+      <ul class="vc-list">
+        <li>Designer e marcas autorais, nacionais e internacionais</li>
+        <li>Peças de arquivo e vintage com história</li>
+        <li>Bolsas, sapatos, joias e acessórios</li>
+        <li>Feminino e masculino, em bom estado</li>
+      </ul>
+      <p class="vc-small">Não entram: fast fashion, réplicas e peças com dano estrutural.</p>
+    </div>
+    <div>
+      <span class="label">Quanto você recebe</span>
+      <h3 class="display">Comissão clara</h3>
+      <ul class="vc-list">
+        <li>Você informa o valor mínimo que aceita</li>
+        <li>A curadoria sugere o preço de venda</li>
+        <li>[X]% do valor de venda é seu <em class="vc-note">[CONFIRMAR]</em></li>
+        <li>Pagamento em até [Y] dias após a venda <em class="vc-note">[CONFIRMAR]</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vc-band">
+    <p class="display">Vamos começar?</p>
+    <button class="btn vc-cta light" data-go="form">Começar meu pack</button>
+  </div>
+</section>
+
+<!-- ===================== 2. ADICIONAR PEÇA ===================== -->
+<section class="vc-view pad" id="vc-form" data-view="form" hidden>
+  <div class="vc-form-wrap">
+    <div class="vc-form-head">
+      <span class="label" id="vc-form-eyebrow">Peça 1</span>
+      <h2 class="display vc-h2" id="vc-form-title">Adicione uma peça</h2>
+      <p class="vc-small">Comece pelas fotos. Quanto mais claras, mais rápida a resposta da curadoria.</p>
+      <div class="vc-progress" aria-hidden="true"><span id="vc-progress"></span></div>
+    </div>
+
+    <form id="vc-piece" novalidate>
+      <fieldset class="vc-photos">
+        <legend>Fotos <span class="vc-req">obrigatória ao menos 1</span></legend>
+        <div class="vc-photo-grid" id="vc-photo-grid">
+          <label class="vc-slot" data-slot="frente"><input type="file" accept="image/*" id="ph-frente"><span>Frente</span></label>
+          <label class="vc-slot" data-slot="costas"><input type="file" accept="image/*" id="ph-costas"><span>Costas</span></label>
+          <label class="vc-slot" data-slot="etiqueta"><input type="file" accept="image/*" id="ph-etiqueta"><span>Etiqueta</span></label>
+          <label class="vc-slot" data-slot="detalhe"><input type="file" accept="image/*" id="ph-detalhe"><span>Marca de uso</span></label>
+        </div>
+        <p class="vc-small">Toque num quadro para escolher da galeria ou fotografar.</p>
+      </fieldset>
+
+      <div class="vc-grid2">
+        <div class="vc-field">
+          <label for="f-marca">Marca / designer</label>
+          <input id="f-marca" list="designers" placeholder="ex.: Prada, Chloé, Martin Margiela" autocomplete="off">
+          <datalist id="designers"><option>Prada</option><option>Miu Miu</option><option>Chloé</option><option>Celine</option><option>Saint Laurent</option><option>Jil Sander</option><option>Maison Margiela</option><option>Dries Van Noten</option><option>Issey Miyake</option><option>Comme des Garçons</option><option>Gucci</option><option>Bottega Veneta</option><option>Loewe</option><option>Valentino</option></datalist>
+        </div>
+        <div class="vc-field">
+          <label for="f-cat">Categoria</label>
+          <select id="f-cat">
+            <option value="">Selecionar…</option>
+            <option>Vestido</option><option>Camisa / Blusa</option><option>Calça</option><option>Saia</option><option>Blazer / Alfaiataria</option><option>Casaco / Trench</option><option>Tricô</option><option>Conjunto</option><option>Bolsa</option><option>Sapato</option><option>Joia / Bijuteria</option><option>Acessório</option><option>Outro</option>
+          </select>
+        </div>
+        <div class="vc-field">
+          <label for="f-tam">Tamanho na etiqueta</label>
+          <input id="f-tam" placeholder="ex.: IT 42, M, 38">
+        </div>
+        <div class="vc-field">
+          <label for="f-era">Época (se souber)</label>
+          <select id="f-era"><option value="">Não sei</option><option>Atual (até 5 anos)</option><option>Anos 2010</option><option>Anos 2000</option><option>Anos 90</option><option>Anos 80 ou antes</option></select>
+        </div>
+      </div>
+
+      <fieldset class="vc-field vc-condset" id="vc-cond">
+        <legend>Condição</legend>
+        <div class="cond-scale" role="radiogroup" aria-label="Condição da peça">
+          <button type="button" role="radio" aria-checked="false" data-v="Impecável"></button>
+          <button type="button" role="radio" aria-checked="false" data-v="Excelente"></button>
+          <button type="button" role="radio" aria-checked="false" data-v="Muito bom"></button>
+          <button type="button" role="radio" aria-checked="false" data-v="Bom"></button>
+          <button type="button" role="radio" aria-checked="false" data-v="Com marcas"></button>
+          <button type="button" role="radio" aria-checked="false" data-v="Como está"></button>
+        </div>
+        <div class="cond-labels" aria-hidden="true"><span>Impecável</span><span>Excelente</span><span>Muito bom</span><span>Bom</span><span>Com marcas</span><span>Como está</span></div>
+        <p class="cond-def" id="vc-cond-def" aria-live="polite">Toque no nível que melhor descreve a peça.</p>
+      </fieldset>
+
+      <div class="vc-field">
+        <label for="f-obs">Marcas de uso ou defeitos <span class="vc-opt">(opcional)</span></label>
+        <textarea id="f-obs" rows="3" placeholder="ex.: leve desbotamento na barra, botão trocado"></textarea>
+      </div>
+
+      <div class="vc-grid2">
+        <div class="vc-field">
+          <label for="f-min">Valor mínimo que você aceita <span class="vc-opt">(opcional)</span></label>
+          <input id="f-min" inputmode="numeric" placeholder="R$">
+        </div>
+        <div class="vc-field">
+          <label for="f-hist">História da peça <span class="vc-opt">(opcional)</span></label>
+          <input id="f-hist" placeholder="ex.: comprada em Paris em 2004">
+        </div>
+      </div>
+
+      <p class="vc-error" id="vc-error" role="alert" hidden></p>
+
+      <div class="vc-actions">
+        <button type="submit" class="btn" id="vc-add">Adicionar ao pack</button>
+        <button type="button" class="btn ghost" id="vc-see" data-go="lista" hidden>Ver meu pack (<span id="vc-see-n">0</span>)</button>
+        <button type="button" class="btn ghost" id="vc-cancel" hidden>Cancelar edição</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== 3. MEU PACK ===================== -->
+<section class="vc-view pad" id="vc-lista" data-view="lista" hidden>
+  <div class="sec-head">
+    <div><span class="label">Seu pack</span><h2 class="display vc-h2" id="vc-list-title">0 peças</h2></div>
+    <button class="btn ghost vc-inline" data-go="form">+ Adicionar peça</button>
+  </div>
+  <div class="vc-empty" id="vc-empty">
+    <p>Nenhuma peça no pack ainda.</p>
+    <button class="btn vc-inline" data-go="form">Adicionar a primeira</button>
+  </div>
+  <div class="vc-cards" id="vc-cards"></div>
+
+  <form class="vc-contact" id="vc-contact" novalidate hidden>
+    <h3 class="display">Para a curadoria te responder</h3>
+    <div class="vc-grid2">
+      <div class="vc-field"><label for="c-nome">Nome</label><input id="c-nome" autocomplete="name"></div>
+      <div class="vc-field"><label for="c-zap">WhatsApp</label><input id="c-zap" inputmode="tel" autocomplete="tel" placeholder="(21) 9…"></div>
+      <div class="vc-field"><label for="c-mail">E-mail</label><input id="c-mail" type="email" autocomplete="email"></div>
+      <div class="vc-field"><label for="c-cidade">Cidade</label><input id="c-cidade" autocomplete="address-level2"></div>
+    </div>
+    <fieldset class="vc-field">
+      <legend>Como prefere entregar as peças aprovadas?</legend>
+      <div class="chips" role="radiogroup">
+        <label class="chip"><input type="radio" name="entrega" value="Envio pelos Correios" checked> Envio pelos Correios</label>
+        <label class="chip"><input type="radio" name="entrega" value="Retirada"> Retirada</label>
+        <label class="chip"><input type="radio" name="entrega" value="Levar ao showroom"> Levar ao showroom</label>
+      </div>
+    </fieldset>
+    <label class="vc-check"><input type="checkbox" id="c-ok"> Li e aceito as condições de consignação <em class="vc-note">[texto a definir]</em></label>
+    <p class="vc-error" id="vc-error2" role="alert" hidden></p>
+    <button type="submit" class="btn" id="vc-send">Enviar pack para a curadoria</button>
+  </form>
+</section>
+
+<!-- ===================== 4. ENVIADO ===================== -->
+<section class="vc-view pad" id="vc-ok" data-view="ok" hidden>
+  <div class="vc-ok">
+    <img src="../assets/logo-4p-bordado-provisorio.png" alt="" class="vc-ok-seal">
+    <h2 class="display">Pack recebido.</h2>
+    <p id="vc-ok-text">Recebemos suas peças. A curadoria responde pelo WhatsApp em até [X] dias úteis.</p>
+    <p class="vc-small" id="vc-ok-code"></p>
+    <div class="vc-actions center"><button class="btn" data-go="form" id="vc-again">Montar outro pack</button><a class="btn ghost" href="index.html">Voltar ao acervo</a></div>
+    <p class="vc-note">Na prévia, nada é enviado de verdade. No site, o pack vai para o painel da curadoria.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="f-giant" aria-hidden="true">4 Past<br>Forward</div>
+  <div class="f-bottom"><span>Second time's a charm.</span><span>Instagram · © 4PASTFWRD</span></div>
+</footer>
+<div class="vc-toast" id="vc-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

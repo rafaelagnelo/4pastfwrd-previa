@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Prévia 4PASTFWRD</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+</head>
+<body>
+<style>
+/* Capa da prévia: usa a paleta do manual v2 (single-theme por escolha: a marca é creme).
+   Layout: letreiro + 3 cartões de direção + faixa de avisos. */
+:root{
+  --cream:#F2ECE2; --card:#E0D6C9; --ink:#1C1714; --oxblood:#6E1A17; --oxblood-deep:#4F1210;
+  --olive:#6B621C; --lilac:#CDB4D0; --muted:#6B6359; --line:#DCD3C6; --white:#FFFFFF;
+  --display:'Gloock','Times New Roman',serif; --body:'DM Sans',system-ui,sans-serif; --accent:'Newsreader',Georgia,serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oxblood);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.notice{background:var(--oxblood);color:var(--cream);font-size:13px}
+.notice .wrap{padding-block:10px;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
+.notice b{letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+header .wrap{padding-block:40px 24px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--oxblood);font-size:clamp(48px,11vw,150px);line-height:.85;margin:0;text-wrap:balance}
+.lead{font-size:clamp(17px,1.8vw,20px);max-width:60ch;margin:20px 0 0}
+.lead em{font-family:var(--accent);font-size:1.1em;color:var(--oxblood)}
+.dirs .wrap{padding-block:16px 48px;display:grid;gap:16px}
+@media(min-width:900px){.dirs .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.dir{background:var(--white);border:1px solid var(--ink);display:flex;flex-direction:column;min-width:0}
+.dir .sw{height:120px;display:flex;align-items:center;justify-content:center;font-family:var(--display);text-transform:uppercase;color:var(--oxblood);font-size:26px;border-bottom:1px solid var(--line);background:var(--cream)}
+.dir .sw.b{background:url('assets/pattern-dots-oxblood-indigo.jpg') center/600px auto}
+.dir .sw.c{display:grid;grid-template-columns:2fr 1fr;padding:0}
+.dir .sw.c span{display:flex;align-items:center;justify-content:center;font-size:20px}
+.dir .sw.c i{background:url('assets/pattern-dots-olive-lilac.jpg') center/400px auto}
+.dir .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.dir .tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rec{background:var(--oxblood);color:var(--cream);padding:2px 6px;font-size:10px}
+.dir h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:28px;line-height:1;margin:0}
+.dir p{margin:0;font-size:15px;flex:1}
+.links{display:flex;gap:8px}
+.links a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:12px;background:var(--ink);color:var(--cream)}
+.links a:hover{background:var(--oxblood)}
+.links a.sell{background:var(--olive)}
+.links a.sell:hover{background:var(--oxblood)}
+.more .wrap{padding-block:0 48px;display:grid;gap:16px}
+@media(min-width:900px){.more .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.box{border-top:1px solid var(--ink);padding-top:16px}
+.box h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.box ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.manual{display:inline-block;margin-top:12px;font-weight:700;text-decoration:underline}
+footer{background:var(--oxblood);color:var(--cream)}
+footer .wrap{padding-block:24px;font-size:13px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* Visualizador embutido: abre cada página da prévia dentro da capa (rota pelo #) */
+.viewer{position:fixed;inset:0;z-index:50;background:var(--card);display:flex;flex-direction:column}
+.viewer[hidden]{display:none!important}
+.vbar{background:var(--ink);color:var(--cream);padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));padding-top:calc(10px + env(safe-area-inset-top,0px));display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:13px}
+.vbar button,.vbar select{font:inherit;font-size:13px;color:var(--cream);background:transparent;border:1px solid var(--cream);padding:7px 12px;cursor:pointer}
+.vbar select option{color:var(--ink)}
+.vbar .title{font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:auto;min-width:0}
+.vbar button[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+.stage{flex:1;min-height:0;display:flex;justify-content:center;overflow:auto;padding:0}
+.stage iframe{border:0;background:var(--white);width:100%;height:100%;display:block}
+.stage.phone{padding:16px}
+.stage.phone iframe{width:390px;max-width:100%;height:100%;box-shadow:0 0 0 1px var(--ink),0 12px 40px rgba(28,23,20,.25)}
+.vmsg{padding:24px;font-size:15px;max-width:60ch}
+</style>
+
+<div class="notice"><div class="wrap"><b>Prévia de design</b><span>Versão de trabalho para aprovação. Não é o site oficial da 4PASTFWRD: botões e links de compra não funcionam.</span></div></div>
+
+<header><div class="wrap">
+  <p class="eyebrow">Site 4PASTFWRD · Fase 4 · novembro de 2026</p>
+  <h1>4 Past<br>Forward</h1>
+  <p class="lead">Três caminhos visuais para o site, com as mesmas cores, fontes e textos. O que muda é o ritmo, a hierarquia e o uso de imagem. Abram a <strong>Home</strong> e o <strong>Produto</strong> de cada uma, de preferência no celular e no computador. <em>A nossa recomendação é a C.</em></p>
+</div></header>
+
+<section class="dirs" aria-label="Direções de design"><div class="wrap">
+  <article class="dir">
+    <div class="sw" aria-hidden="true">4 Past Forward</div>
+    <div class="body">
+      <span class="tag">Direção A</span>
+      <h2>Editorial silencioso</h2>
+      <p>O letreiro e as fotos falam. Muito respiro, ritmo de revista, sem o padrão de poás. Luxo silencioso.</p>
+      <div class="links"><a href="#a-home">Home</a><a href="#a-produto">Produto</a></div>
+    </div>
+  </article>
+  <article class="dir">
+    <div class="sw b" aria-hidden="true"></div>
+    <div class="body">
+      <span class="tag">Direção B</span>
+      <h2>Pop-up energy</h2>
+      <p>O padrão de poás é o protagonista: bandeja de prata, letreiro corrido, adesivos e colagem. Mais Instagram, mais evento.</p>
+      <div class="links"><a href="#b-home">Home</a><a href="#b-produto">Produto</a></div>
+    </div>
+  </article>
+  <article class="dir">
+    <div class="sw c" aria-hidden="true"><span>4 Past Forward</span><i></i></div>
+    <div class="body">
+      <span class="tag">Direção C <span class="rec">Recomendada</span></span>
+      <h2>Híbrida</h2>
+      <p>A calma da A para comprar, com a energia da B nos drops, no aluguel e na lista de early drop. Mais interativa, com seções reorganizáveis.</p>
+      <div class="links"><a href="#c-home">Home</a><a href="#c-produto">Produto</a></div>
+      <div class="links"><a href="#c-venda" class="sell">Venda conosco: enviar peças</a></div>
+    </div>
+  </article>
+</div></section>
+
+<section class="more" aria-label="Como avaliar"><div class="wrap">
+  <div class="box">
+    <h3>O que testar</h3>
+    <ul>
+      <li>Rolar a Home: o letreiro grande dá lugar ao logo pequeno no topo.</li>
+      <li>Na C, tocar em <strong>Menu</strong> para ver o menu em tela cheia.</li>
+      <li>Na C, usar <strong>Editar seções</strong> (canto inferior esquerdo) para trocar o layout e a ordem dos blocos, como vocês farão no Shopify.</li>
+      <li>No Produto, tocar nos níveis da escala de condição para ver o que cada um significa.</li>
+      <li><strong>Venda conosco:</strong> montar um pack de teste com fotos do próprio celular, editar, remover e enviar. Na prévia nada é enviado de verdade.</li>
+    </ul>
+  </div>
+  <div class="box">
+    <h3>O que ainda é provisório</h3>
+    <ul>
+      <li>Fotos: os blocos bege marcam onde entram as fotos reais das peças.</li>
+      <li>Fonte dos títulos e códigos das cores, até recebermos os oficiais do rebranding.</li>
+      <li>Monograma e padrões de poás, recortados de prints do Instagram.</li>
+      <li>Valores, prazos e políticas de troca e aluguel.</li>
+    </ul>
+    <a class="manual" href="#manual">Ver o manual de marca (cores, fontes e componentes)</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>4PASTFWRD · prévia de design</span><span>Second time's a charm.</span></div></footer>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar">
+    <span class="title" id="vtitle">Prévia</span>
+    <label for="vpick" class="sr" style="position:absolute;left:-9999px">Escolher página</label>
+    <select id="vpick" aria-label="Escolher página">
+      <option value="a-home">A · Home</option><option value="a-produto">A · Produto</option>
+      <option value="b-home">B · Home</option><option value="b-produto">B · Produto</option>
+      <option value="c-home">C · Home</option><option value="c-produto">C · Produto</option><option value="c-venda">C · Venda conosco</option>
+      <option value="manual">Manual de marca</option>
+    </select>
+    <button type="button" id="vphone" aria-pressed="false">Ver como celular</button>
+    <button type="button" id="vclose">← Voltar</button>
+  </div>
+  <div class="stage" id="vstage"><iframe id="vframe" title="Página da prévia"></iframe></div>
+</div>
+
+<script>
+(() => {
+  const ROUTES = {
+    'a-home':    ['direcao-a/index.html',   'Direção A · Home'],
+    'a-produto': ['direcao-a/produto.html', 'Direção A · Produto'],
+    'b-home':    ['direcao-b/index.html',   'Direção B · Home'],
+    'b-produto': ['direcao-b/produto.html', 'Direção B · Produto'],
+    'c-home':    ['direcao-c/index.html',   'Direção C · Home'],
+    'c-produto': ['direcao-c/produto.html', 'Direção C · Produto'],
+    'c-venda':   ['direcao-c/venda-conosco.html', 'Direção C · Venda conosco'],
+    'manual':    ['manual-preview.html',    'Manual de marca']
+  };
+  const byPath = Object.fromEntries(Object.entries(ROUTES).map(([k, [p]]) => [p, k]));
+  const viewer = document.getElementById('viewer'), frame = document.getElementById('vframe');
+  const stage = document.getElementById('vstage'), title = document.getElementById('vtitle');
+  const pick = document.getElementById('vpick'), phone = document.getElementById('vphone');
+  const cache = {};
+  const store = { get(){ try { return localStorage.getItem('4pf-previa-phone'); } catch { return null; } }, set(v){ try { localStorage.setItem('4pf-previa-phone', v); } catch {} } };
+
+  // celular por padrão em telas largas fica desligado; o visitante escolhe
+  const setPhone = on => { stage.classList.toggle('phone', on); phone.setAttribute('aria-pressed', String(on)); phone.textContent = on ? 'Ver como computador' : 'Ver como celular'; store.set(on ? '1' : '0'); };
+  setPhone(store.get() === '1' && innerWidth > 600);
+  phone.addEventListener('click', () => setPhone(phone.getAttribute('aria-pressed') !== 'true'));
+  if (innerWidth <= 600) phone.hidden = true;
+
+  // resolve um link de dentro da página carregada para uma rota da prévia
+  const routeFor = (href, fromPath) => {
+    if (!href || href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) return undefined;
+    const url = new URL(href, 'https://x/' + fromPath);
+    const p = url.pathname.replace(/^\//, '');
+    if (p === 'direcoes.html' || p === 'index.html' || p === '') return '';
+    return byPath[p];
+  };
+
+  async function show(key) {
+    const r = ROUTES[key];
+    if (!r) { viewer.hidden = true; document.body.style.overflow = ''; return; }
+    const [path, label] = r;
+    title.textContent = label; pick.value = key;
+    viewer.hidden = false; document.body.style.overflow = 'hidden';
+    try {
+      if (!cache[path]) {
+        const res = await fetch(path);
+        if (!res.ok) throw new Error(res.status);
+        cache[path] = await res.text();
+      }
+      const base = new URL(path.replace(/[^/]*$/, ''), location.href).href;
+      frame.srcdoc = cache[path].replace(/<head>/i, `<head><base href="${base}">`);
+      frame.onload = () => {
+        const doc = frame.contentDocument; if (!doc) return;
+        doc.addEventListener('click', e => {
+          const a = e.target.closest && e.target.closest('a'); if (!a) return;
+          const href = a.getAttribute('href');
+          if (!href || href === '#') { e.preventDefault(); return; }
+          const to = routeFor(href, path);
+          if (to === undefined) return;
+          e.preventDefault();
+          location.hash = to ? '#' + to : '';
+        });
+      };
+    } catch (err) {
+      frame.srcdoc = `<p class="vmsg" style="font:16px system-ui;padding:24px">Não consegui carregar esta página (${String(err.message || err)}). Tente recarregar a prévia.</p>`;
+    }
+  }
+
+  const route = () => show(location.hash.slice(1));
+  addEventListener('hashchange', route);
+  pick.addEventListener('change', () => { location.hash = '#' + pick.value; });
+  document.getElementById('vclose').addEventListener('click', () => { location.hash = ''; show(''); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !viewer.hidden) document.getElementById('vclose').click(); });
+  route();
+})();
+</script>
+
+</body>
+</html>

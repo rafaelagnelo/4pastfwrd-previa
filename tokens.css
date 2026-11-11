@@ -1,0 +1,184 @@
+/* =========================================================================
+   4PASTFWRD — DESIGN TOKENS  ·  v2 (REBRANDING, via Instagram)
+   Base: refs/instagram/*.png (2026-11-09). Cores extraídas por amostragem
+   de pixels dos posts e do perfil.
+   Ainda provisório: nome oficial da fonte serifada, hex oficiais, logo em
+   vetor. Itens marcados [CONFIRMAR COM AS CLIENTES].
+   Regra: TODA cor, fonte, raio e selo vive aqui. Nada hardcoded nas páginas.
+   Contraste verificado (WCAG 2.1) — ver docs/03-manual-marca.md §1.
+   ========================================================================= */
+
+/* Display serifada: Gloock = substituta mais próxima do lettering
+   "4 PAST FORWARD" dos posts. [CONFIRMAR fonte oficial] */
+@import url('https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
+
+/* Fonte oficial dos títulos (indicada pelo Rafael em 2026-11-09):
+   Clausville Smooth Regular — Dora Typefoundry (paga; confirmar licença de WEB).
+   O site tenta, nesta ordem: a fonte instalada no aparelho, o .woff2 e o .otf
+   em assets/fonts/. Sem o arquivo, cai na Gloock (substituta). */
+@font-face {
+  font-family: 'Clausville Smooth';
+  src: local('Clausville Smooth'), local('Clausville Smooth Regular'), local('ClausvilleSmooth-Regular'),
+       url('assets/fonts/ClausvilleSmooth-Regular.woff2') format('woff2'),
+       url('assets/fonts/ClausvilleSmooth-Regular.otf') format('opentype'),
+       url('assets/fonts/ClausvilleSmooth-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- 1. CORES BASE (extraídas do rebranding) ---------- */
+  --c-oxblood:    #6E1A17;  /* bordô — "COMING SOON", poás do perfil    */
+  --c-oxblood-deep:#4F1210; /* bordô profundo — fundo do post azul/bordô */
+  --c-olive:      #6B621C;  /* oliva — monograma 4P, fundo do post lilás */
+  --c-olive-deep: #565015;  /* oliva escura — texto/links em oliva       */
+  --c-lilac:      #CDB4D0;  /* lilás — poás (só fundo/superfície)        */
+  --c-indigo:     #3A5174;  /* índigo — poás do post bordô               */
+  --c-cream:      #F2ECE2;  /* creme — fundo principal (papel/linho)     */
+  --c-card:       #E0D6C9;  /* cartão creme — superfícies, "Coming soon" */
+  --c-white:      #FFFFFF;
+  --c-ink:        #1C1714;  /* quase-preto quente                        */
+  --c-night:      #2A0E0C;  /* "noite bordô" — fundo do Rental           */
+  --c-stone-600:  #6B6359;  /* texto secundário                          */
+  --c-stone-500:  #8C8377;  /* borda de campo (≥ 3:1 sobre creme)        */
+  --c-stone-300:  #B8ADA0;  /* texto secundário sobre noite              */
+  --c-stone-200:  #DCD3C6;  /* linhas decorativas                        */
+  --c-green:      #2F5D3A;  /* sucesso                                   */
+  --c-amber:      #7A5200;  /* aviso                                     */
+
+  /* ---------- 2. CORES POR FUNÇÃO (use estas nas páginas) ---------- */
+  --bg:            var(--c-cream);
+  --bg-raised:     var(--c-white);
+  --bg-surface:    var(--c-card);
+  --bg-inverse:    var(--c-ink);
+  --bg-accent:     var(--c-oxblood);
+  --bg-accent-2:   var(--c-olive);
+  --bg-soft:       var(--c-lilac);   /* faixas, pop-up, chips ativos */
+  --bg-night:      var(--c-night);
+
+  --text:          var(--c-ink);
+  --text-muted:    var(--c-stone-600);
+  --text-inverse:  var(--c-cream);
+  --text-on-accent:var(--c-cream);
+  --text-accent:   var(--c-oxblood);
+  --text-accent-2: var(--c-olive-deep);
+
+  --border:        var(--c-stone-200);
+  --border-input:  var(--c-stone-500);
+  --border-strong: var(--c-ink);
+
+  --focus:         var(--c-indigo);
+
+  --state-success: var(--c-green);
+  --state-warning: var(--c-amber);
+  --state-error:   var(--c-oxblood);  /* sempre com ícone + texto */
+  --state-sold:    var(--c-stone-600);
+
+  /* ---------- 3. TIPOGRAFIA ---------- */
+  --font-display:   'Clausville Smooth', 'Gloock', 'Times New Roman', serif;   /* oficial: Clausville Smooth; Gloock até o arquivo chegar */
+  --font-body:      'DM Sans', system-ui, sans-serif;     /* Opção A (padrão) */
+  --font-editorial: var(--font-body);                     /* Opção B: 'Newsreader', Georgia, serif */
+  --font-data:      'DM Sans', system-ui, sans-serif;     /* preço, medidas: sempre sans */
+  --font-accent:    'Newsreader', Georgia, serif;         /* itálico para tagline/acentos (substitui o script antigo) */
+
+  --fs-giant:  calc((100vw - 2 * var(--grid-margin)) / 5.1); /* "FORWARD" ocupa a largura útil, em 2 linhas */
+  --fs-h1:     clamp(40px, 7vw, 104px);
+  --fs-h2:     clamp(28px, 4.2vw, 60px);
+  --fs-h3:     clamp(20px, 2.4vw, 28px);
+  --fs-accent: clamp(22px, 3vw, 40px);
+  --fs-lead:   clamp(17px, 1.6vw, 20px);
+  --fs-body:   16px;
+  --fs-small:  14px;
+  --fs-micro:  12px;
+
+  --lh-tight:  0.92;
+  --lh-head:   1.05;
+  --lh-body:   1.55;
+
+  --ls-caps:    0.12em;
+  --ls-display: -0.005em;
+  --display-case: uppercase;   /* o lettering do rebranding é em caixa alta */
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+
+  /* ---------- 4. ESPAÇO (base 4px) ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+  --section-y: clamp(48px, 8vw, 128px);
+
+  /* ---------- 5. GRID ---------- */
+  --grid-cols: 4;
+  --grid-gutter: 16px;
+  --grid-margin: 16px;
+  --grid-max: 1440px;
+
+  /* ---------- 6. FORMA ---------- */
+  --radius-0: 0;
+  --radius-pill: 999px;   /* chips de filtro e selo circular do monograma */
+  --border-w: 1px;
+  --shadow-overlay: 0 8px 40px rgba(28,23,20,.14);
+
+  /* ---------- 7. TEXTURA (padrão de poás do rebranding) ---------- */
+  /* Arquivos a criar em design/assets/ a partir das fotos/vetores oficiais. */
+  --pattern-dots-olive:   url('assets/pattern-dots-olive-lilac.jpg');
+  --pattern-dots-oxblood: url('assets/pattern-dots-oxblood-indigo.jpg');
+
+  /* ---------- 8. MOVIMENTO ---------- */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 600ms;
+
+  /* ---------- 9. IMAGEM ---------- */
+  --ratio-product: 3 / 4;
+  --ratio-street:  4 / 5;
+  --ratio-hero-m:  9 / 16;
+  --ratio-hero-d:  16 / 9;
+  --ratio-detail:  1 / 1;
+  --img-bg: var(--c-card);
+
+  /* ---------- 10. SELOS ---------- */
+  --badge-new-bg:  var(--c-oxblood);  --badge-new-fg:  var(--c-cream);
+  --badge-rent-bg: var(--c-olive);    --badge-rent-fg: var(--c-cream);
+  --badge-sale-bg: transparent;       --badge-sale-fg: var(--c-oxblood); --badge-sale-bd: var(--c-oxblood);
+  --badge-sold-bg: var(--c-card);     --badge-sold-fg: var(--c-stone-600);
+
+  /* ---------- 11. ESCALA DE CONDIÇÃO ---------- */
+  --cond-seg-h: 6px;
+  --cond-seg-gap: 2px;
+  --cond-off: var(--c-stone-200);
+  --cond-on:  var(--c-oxblood);
+  --cond-label: var(--c-stone-600);
+  --cond-label-on: var(--c-ink);
+}
+
+@media (min-width: 900px) {
+  :root { --grid-cols: 12; --grid-gutter: 24px; --grid-margin: 40px; }
+}
+
+/* Rental: "noite bordô". Aplicar class="theme-night" no <body> da aba. */
+.theme-night {
+  --bg:          var(--c-night);
+  --bg-raised:   #3A1714;
+  --bg-surface:  #3A1714;
+  --text:        var(--c-cream);
+  --text-muted:  var(--c-stone-300);
+  --text-accent: var(--c-lilac);
+  --border:      #4A2522;
+  --border-input:var(--c-stone-500);
+  --border-strong: var(--c-cream);
+  --cond-off:    #4A2522;
+  --cond-on:     var(--c-lilac);
+  --cond-label:  var(--c-stone-300);
+  --cond-label-on: var(--c-cream);
+  --img-bg:      #3A1714;
+  --focus:       var(--c-lilac);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+}

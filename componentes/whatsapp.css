@@ -1,0 +1,62 @@
+/* Botão flutuante do WhatsApp — componente compartilhado pelas 3 direções.
+   Verde oficial do WhatsApp para reconhecimento imediato; resto pelos tokens. */
+:root{ --wa-green:#25D366; --wa-green-deep:#128C7E; }
+
+.wa-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;
+  display:flex;align-items:center;gap:0;height:56px;min-width:56px;padding:0;border-radius:999px;
+  background:var(--wa-green);color:#fff;text-decoration:none;box-shadow:0 6px 20px rgba(18,140,126,.35);
+  font-family:var(--font-data,system-ui,sans-serif);font-size:14px;font-weight:700;letter-spacing:.02em;
+  transform:translateY(120%) scale(.6);opacity:0;
+  transition:transform .5s cubic-bezier(.2,.9,.3,1.3),opacity .3s ease,bottom .3s ease,background .2s ease,box-shadow .2s ease}
+.wa-fab.in{transform:none;opacity:1}
+.wa-fab:hover,.wa-fab:focus-visible{background:var(--wa-green-deep);box-shadow:0 10px 28px rgba(18,140,126,.45)}
+.wa-fab:focus-visible{outline:3px solid var(--focus,#3A5174);outline-offset:3px}
+.wa-fab:active{transform:scale(.94)}
+
+.wa-fab__icon{position:relative;flex:0 0 56px;width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.wa-fab__icon svg{width:30px;height:30px;fill:#fff;transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+.wa-fab:hover .wa-fab__icon svg{transform:rotate(-12deg) scale(1.08)}
+
+/* rótulo que abre no hover (computador) */
+.wa-fab__label{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .35s ease,opacity .25s ease,padding .35s ease}
+@media (hover:hover){
+  .wa-fab:hover .wa-fab__label,.wa-fab:focus-visible .wa-fab__label{max-width:180px;opacity:1;padding-right:20px}
+}
+
+/* pulso discreto */
+.wa-fab__icon::before,.wa-fab__icon::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa-green);opacity:0;pointer-events:none}
+.wa-fab.in .wa-fab__icon::before{animation:wa-pulse 6s ease-out 2s infinite}
+.wa-fab.in .wa-fab__icon::after{animation:wa-pulse 6s ease-out 2.4s infinite}
+@keyframes wa-pulse{0%{transform:scale(1);opacity:.55}30%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+.wa-fab:hover .wa-fab__icon::before,.wa-fab:hover .wa-fab__icon::after{animation:none}
+
+/* indicador de mensagem nova junto do balão */
+.wa-fab__dot{position:absolute;top:6px;right:6px;width:14px;height:14px;border-radius:50%;background:var(--c-oxblood,#6E1A17);border:2px solid #fff;transform:scale(0);transition:transform .3s cubic-bezier(.2,.9,.3,1.5)}
+.wa-fab.has-msg .wa-fab__dot{transform:scale(1)}
+
+/* balão de conversa */
+.wa-bubble{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:45;
+  width:min(280px,calc(100vw - 32px));background:var(--c-white,#fff);color:var(--c-ink,#1C1714);
+  border:1px solid var(--border,#DCD3C6);border-radius:14px 14px 4px 14px;box-shadow:0 12px 32px rgba(28,23,20,.18);
+  padding:14px 36px 14px 16px;font-family:var(--font-data,system-ui,sans-serif);font-size:14px;line-height:1.4;cursor:pointer;
+  transform-origin:100% 100%;transform:scale(.6) translateY(10px);opacity:0;pointer-events:none;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.3),opacity .25s ease,bottom .3s ease}
+.wa-bubble.on{transform:none;opacity:1;pointer-events:auto}
+.wa-bubble b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--wa-green-deep);margin-bottom:4px}
+.wa-bubble__close{position:absolute;top:6px;right:6px;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--text-muted,#6B6359);font-size:18px;line-height:1;cursor:pointer}
+.wa-bubble__close:hover{background:var(--c-card,#E0D6C9)}
+.wa-bubble__close:focus-visible{outline:2px solid var(--focus,#3A5174)}
+
+/* sobe quando a barra fixa de compra aparece no celular */
+body:has(.buybar.show) .wa-fab{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body:has(.buybar.show) .wa-bubble{bottom:calc(152px + env(safe-area-inset-bottom,0px))}
+
+@media (max-width:480px){
+  .wa-fab{height:52px;min-width:52px}
+  .wa-fab__icon{flex-basis:52px;width:52px;height:52px}
+  .wa-fab__icon svg{width:28px;height:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  .wa-fab,.wa-bubble,.wa-fab__icon svg,.wa-fab__label{transition:none}
+  .wa-fab.in .wa-fab__icon::before,.wa-fab.in .wa-fab__icon::after{animation:none}
+}

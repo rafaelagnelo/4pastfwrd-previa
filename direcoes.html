@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Três direções · 4PASTFWRD</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:var(--lh-body);padding:var(--s-7) var(--grid-margin)}
+h1{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:var(--fs-h2);line-height:1;margin-bottom:var(--s-3)}
+.intro{max-width:60ch;margin-bottom:var(--s-7);color:var(--text-muted)}
+.cols{display:grid;gap:var(--s-5)}
+@media(min-width:900px){.cols{grid-template-columns:repeat(3,1fr)}}
+.dir{border:1px solid var(--border-strong);background:var(--bg-raised);display:flex;flex-direction:column}
+.dir .sw{height:120px}
+.dir .body{padding:var(--s-5);flex:1;display:flex;flex-direction:column}
+.dir .tag{font-family:var(--font-data);font-size:var(--fs-micro);letter-spacing:var(--ls-caps);text-transform:uppercase;font-weight:700;color:var(--text-muted)}
+.dir h2{font-family:var(--font-display);text-transform:uppercase;font-weight:400;font-size:28px;line-height:1;margin:var(--s-2) 0 var(--s-4)}
+.dir ol{padding-left:var(--s-5);font-size:var(--fs-small);margin-bottom:var(--s-5);flex:1}
+.dir ol li{margin-bottom:var(--s-2)}
+.links{display:flex;gap:var(--s-3)}
+.links a{flex:1;text-align:center;font-family:var(--font-data);font-weight:700;font-size:var(--fs-small);letter-spacing:.06em;text-transform:uppercase;padding:var(--s-3);background:var(--bg-inverse);color:var(--text-inverse);text-decoration:none}
+.links a:hover{background:var(--bg-accent)}
+.rec{display:inline-block;margin-left:8px;background:var(--bg-accent);color:var(--text-on-accent);padding:2px 6px;font-size:10px}
+</style>
+</head>
+<body>
+<h1>Três direções</h1>
+<p class="intro">Mesmos tokens, mesma copy. Muda layout, ritmo, hierarquia e uso de imagem. Abra Home e Produto de cada uma; redimensione a janela para ver o celular. Detalhes em docs/04-direcoes.md.</p>
+<div class="cols">
+  <div class="dir">
+    <div class="sw" style="background:var(--c-cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--c-oxblood);font-size:34px;text-transform:uppercase;border-bottom:1px solid var(--border)">4 Past Forward</div>
+    <div class="body">
+      <span class="tag">Direção A</span>
+      <h2>Editorial silencioso</h2>
+      <ol>
+        <li>Wordmark gigante que encolhe no scroll; fotos inteiras; muito respiro.</li>
+        <li>Ritmo lento de revista; grid desencontrado; manifesto em texto enorme.</li>
+        <li>Sem padrão de poás: luxo silencioso, cor só no wordmark e no rodapé.</li>
+      </ol>
+      <div class="links"><a href="direcao-a/index.html">Home</a><a href="direcao-a/produto.html">Produto</a></div>
+    </div>
+  </div>
+  <div class="dir">
+    <div class="sw" style="background:url('assets/pattern-dots-oxblood-indigo.jpg') center/600px auto"></div>
+    <div class="body">
+      <span class="tag">Direção B</span>
+      <h2>Pop-up energy</h2>
+      <ol>
+        <li>Padrão de poás protagonista; cartão na bandeja de prata no hero.</li>
+        <li>Letreiro corrido, cards coloridos, stickers, colagem.</li>
+        <li>Monograma como selo central; tudo mais Instagram e evento.</li>
+      </ol>
+      <div class="links"><a href="direcao-b/index.html">Home</a><a href="direcao-b/produto.html">Produto</a></div>
+    </div>
+  </div>
+  <div class="dir">
+    <div class="sw" style="display:grid;grid-template-columns:2fr 1fr"><div style="background:var(--c-cream);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--c-oxblood);font-size:22px;text-transform:uppercase">4 Past Forward</div><div style="background:url('assets/pattern-dots-olive-lilac.jpg') center/400px auto"></div></div>
+    <div class="body">
+      <span class="tag">Direção C <span class="rec">Recomendada</span></span>
+      <h2>Híbrida</h2>
+      <ol>
+        <li>Base da A para comprar: produto e listagem calmos e confiáveis.</li>
+        <li>Momentos da B onde a marca vende: The Edit, Rental, pop-up, City Notes.</li>
+        <li>Faixa fina de padrão como assinatura; no máximo 1 momento B por tela.</li>
+      </ol>
+      <div class="links"><a href="direcao-c/index.html">Home</a><a href="direcao-c/produto.html">Produto</a></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
